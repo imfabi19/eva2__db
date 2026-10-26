@@ -4,7 +4,7 @@ from django.db import models
 #Creación de Categoria
 
 class Categoria(models.Model):
-    nombre = models.CharField(max_length=100, unique = True),
+    nombre = models.CharField(max_length=100, unique = True)
     tipo = models.CharField(max_length=100)
 
     class Meta:
@@ -25,8 +25,8 @@ class Item(models.Model):
     pedido = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='pedido')
 
     categoria = models.ManyToManyField(
-        Categoria, related_name='categorias',
-    )
+        Categoria, related_name='categorias')
+
     def __str__(self):
         return {self.nombre}
 
@@ -35,7 +35,7 @@ class Item(models.Model):
 class Personaje(models.Model):
     raza=models.CharField(max_length=100)
     descripcion = models.TextField(null = True)
-    nivel = models.IntegerField()
+    nivel = models.IntegerField(defult = 0)
     ban = models.BooleanField(default = False, null = True)
     creado = models.DateTimeField(auto_now_add=True)
 
